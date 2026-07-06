@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="Screenshots/demo.mp4" width="700">
+</p>
+
+
+
 # 🤖 AI Calendar Task Agent
 
 A local AI-powered Calendar Task Agent built with **Python**, **Ollama (Llama 3.1)**, and **OpenAI Function Calling**.
@@ -187,7 +193,10 @@ Show all tasks
 
 ## Create Task
 
-(Add Screenshot Here)
+<p align="center">
+  <img src="Screenshots/create_task.png" width="48%">
+  <img src="Screenshots/demo.png" width="48%">
+</p>
 
 ---
 
