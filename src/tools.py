@@ -1,8 +1,10 @@
 from datetime import datetime
-# from dateutil import parser
 import json
 import dateparser
+from rich.console import Console
+from rich.table import Table
 
+console = Console()
 
 def normalized_parser(value, mode):
 
@@ -109,8 +111,26 @@ def display_All_task():
     with open("Knowledge.json", "r") as f:
         data = json.load(f)
 
-        return data["tasks"]
+        tasks = data["tasks"]
 
+        table = Table(title="📋 Your Tasks")
+
+        table.add_column("ID", style="magenta")
+        table.add_column("Title" , style="cyan")
+        table.add_column("Date" , style="Green")
+        table.add_column("Time" , style="Yellow")
+
+
+        for i, task in enumerate(tasks , start=1):
+            table.add_row(
+                str(i),
+                task["Title"],
+                task["Date"],
+                task["Time"]
+            )
+
+        console.print(table)
+        return "Tasks displayed successfully."
 
 # print(display_All_task())
 
@@ -122,6 +142,7 @@ def get_task_id(title_query):
             return task["id"]
         
     return None
+
 
 
 tools = [
