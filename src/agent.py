@@ -13,50 +13,60 @@ client = OpenAI(
 
 
 def execute_tool_calls(tools_calls):
-    result = []
+    results = []
     for tool_call in tools_calls:
         func_name = tool_call.function.name
         args = json.loads(tool_call.function.arguments)
 
-    if func_name in Tool_Map:
-        print(f"{func_name} with {args}")
-        result = Tool_Map[func_name](**args)
-        # print(func_name)
-        # print(Tool_Map.keys())
-        return result
-    else:
-        return f"Error:Tool {func_name} not found!"
+        if func_name in Tool_Map:
+            print(f"{func_name} with {args}")
+            output = Tool_Map[func_name](**args)
+            # print(func_name)
+            # print(Tool_Map.keys())
+            results.append(output)
+        else:
+            results.append(f"{func_name} not found!")
+    return results
+
 
 
 def chat_with_agent(prompt):
 
-    today = datetime.now().strftime("%Y-%m-%d")
+    # today = datetime.now().strftime("%Y-%m-%d")
     response = client.chat.completions.create(
         model="llama3.1",
         messages=[
             {
                 "role": "system",
-                "content": f"You are a Calendar Agent, Today's date is {today}. Use this to calculate 'Monday', 'tomorrow', etc.. & You have access to these tools: create_Task, update_task, delete_task, display_All_task, get_task_id.When the user asks to perform an action, you MUST use the correct tool name from this list. Do not respond without a tool name if an action is required.If the user says today, tomorrow or yesterday, pass exactly:today,tomorrow,yesterday, Do not pass phrases like Today (current date) & Process all tasks in the provided input without stopping",
-                "rules": "You are a Calendar Agent. Rules:"
-                "1. If the user provides a list of tasks in a single sentence, you MUST split them into individual tasks."
-                "2. For each individual task, you must call the 'create_Task' tool separately."
-                "3. NEVER group multiple tasks into one 'Title'. "
-                "4. Always extract the time and title accurately for each task.",
-            },
-            {"role": "user", "content": prompt},
+                "content": """You are a Calendar Agent.
+
+Always use tools.
+
+If the user asks to create multiple tasks,
+return multiple tool calls.
+
+Never explain your reasoning.
+
+Never output JSON manually.
+
+Only use the provided tools.
+                            """
+                            },
+                            {
+                                "role": "user", "content": prompt
+                                },
         ],
         tools=tools,
-        tool_choice="auto",
+        # tool_choice="auto",
     )
 
     message = response.choices[0].message
 
     if message.tool_calls:
-        result = []
-        for calls in message.tool_calls:
-            result.append(execute_tool_calls([calls]))
-        # print(message)
-        # print(message.tool_calls)
+        result = execute_tool_calls(message.tool_calls)
         return f"Tool Execution Result: {result}"
+    print("Tool Calls:", message.tool_calls)
+    print("Finish Reason:", response.choices[0].finish_reason)
+    print("Content:", message.content)
 
     return message.content

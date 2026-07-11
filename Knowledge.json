@@ -2,52 +2,31 @@
     "tasks": [
         {
             "id": 1,
-            "Title": "go to gym",
-            "Date": "2026-07-08",
-            "Time": "06:00 AM",
-            "Created_at": "2026-07-08 17:33:03"
+            "Title": "Submit AI Assignment",
+            "Date": "2026-07-12",
+            "Time": "11:00",
+            "Created_at": "2026-07-11 12:51:25"
         },
         {
             "id": 2,
-            "Title": "work on sketchup",
-            "Date": "2026-07-08",
-            "Time": "09:00 AM",
-            "Created_at": "2026-07-08 17:33:03"
+            "Title": "Gym",
+            "Date": "2026-07-12",
+            "Time": "18:00",
+            "Created_at": "2026-07-11 12:51:25"
+        },
+        {
+            "id": 3,
+            "Title": "Study",
+            "Date": "2026-07-17",
+            "Time": "20:00",
+            "Created_at": "2026-07-11 12:51:25"
         },
         {
             "id": 4,
-            "Title": "Ai agents",
-            "Date": "2026-07-08",
-            "Time": "01:00 PM",
-            "Created_at": "2026-07-08 17:33:03"
-        },
-        {
-            "id": 5,
-            "Title": "communication skills",
-            "Date": "2026-07-08",
-            "Time": "03:00 PM",
-            "Created_at": "2026-07-08 17:33:03"
-        },
-        {
-            "id": 6,
-            "Title": "crickent",
-            "Date": "2026-07-08",
-            "Time": "07:00 PM",
-            "Created_at": "2026-07-08 17:33:03"
-        },
-        {
-            "id": 6,
-            "Title": "Meeting with Elon Musk",
-            "Date": "2026-07-09",
-            "Time": "",
-            "Created_at": "2026-07-08 17:43:43"
-        },
-        {
-            "id": 7,
-            "Title": "Meeting with Elon Musk",
-            "Date": "2026-07-11",
-            "Time": "10:00 AM",
-            "Created_at": "2026-07-08 17:55:24"
+            "Title": "Doctor Appointment",
+            "Date": "2026-07-13",
+            "Time": "17:00",
+            "Created_at": "2026-07-11 12:51:25"
         }
     ]
 }
